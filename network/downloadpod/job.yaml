@@ -3,8 +3,7 @@ kind: Job
 metadata:
   name: file-download-job
 spec:
-  completions: 5  # Number of times to run the job
-  parallelism: 5  # Number of pods to run concurrently
+  parallelism: 10  # Number of pods to run concurrently
   template:
     metadata:
       name: file-download-pod
