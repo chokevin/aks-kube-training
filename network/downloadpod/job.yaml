@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: file-download-job
+spec:
+  completions: 5  # Number of times to run the job
+  parallelism: 5  # Number of pods to run concurrently
+  template:
+    metadata:
+      name: file-download-pod
+    spec:
+      containers:
+      - name: file-download-container
+        image: curlimages/curl:latest
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - |
+          echo "Starting download..." && \
+          RESPONSE=$(curl -o /dev/null http://releases.ubuntu.com/24.10/ubuntu-24.10-desktop-amd64.iso) && \
+          echo "$RESPONSE" && \
+          echo "Download completed."
+      restartPolicy: Never
