@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wrk-client
+spec:
+  containers:
+  - name: wrk-client
+    image: williamyeh/wrk
+    command: ["/bin/sh"]
+    args: ["-c", "wrk -t12 -c400 -d30s http://10.244.0.34"]
+  restartPolicy: Never

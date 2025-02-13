@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf3-client
+spec:
+  containers:
+  - name: iperf3-client
+    image: networkstatic/iperf3
+    args: ["-c", "10.244.0.22", "-t", "60"]
+  restartPolicy: Never
